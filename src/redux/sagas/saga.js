@@ -32,7 +32,7 @@ function* workerAlbums({payload}) {
       const data = yield call(fetcAlbums, payload)
       yield put(putAlbums(data))
   } catch (error) {
-      yield put(putAlbums(error))
+      yield alert(JSON.stringify(error))
   } finally {
       yield put(putAlbumsIsLoading(false))
   }
@@ -62,7 +62,7 @@ function* workerAlbumsPhotoList({payload}) {
       const data = yield call(fetcAlbumsPhotoList, payload)
       yield put(putAlbumsPhotoList(data))
   } catch (error) {
-      yield put(putAlbumsPhotoList(error))
+      yield alert(JSON.stringify(error))
   } finally {
       yield put(putAlbumsPhotoListIsLoading(false))
   }

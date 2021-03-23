@@ -1,14 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import Button from '@material-ui/core/Button';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
+import DeleteAlbumButton from './DeleteAlbumButton'
+import EditAlbumButton from './EditAlbumButton'
+
 
 const useStyles = makeStyles({
   tableConteiner: {
@@ -23,9 +25,7 @@ const useStyles = makeStyles({
 const TableAlbums = ({ rows }) => {
   const classes = useStyles();
 
-  const deleteRow = (data) => {
-
-  }
+  console.log(rows);
 
   return (
     <TableContainer className={classes.tableConteiner} size='small' elevation={10} component={Paper}>
@@ -34,6 +34,7 @@ const TableAlbums = ({ rows }) => {
           <TableRow>
             <TableCell align="center">id album</TableCell>
             <TableCell align="center">Name Album</TableCell>
+            <TableCell align="center">Edit</TableCell>
             <TableCell align="center">Delete</TableCell>
           </TableRow>
         </TableHead>
@@ -45,12 +46,14 @@ const TableAlbums = ({ rows }) => {
                 <a href={`/album/${row.id}`} >{row.title}</a>
               </TableCell>
               <TableCell align="center">
-                <Button
-                  color='secondary'
-                  onClick={() => deleteRow(row)}
-                >
-                  <DeleteForeverIcon />
-                </Button>
+                <EditAlbumButton
+                  idAlbum={row.id}
+                />
+              </TableCell>
+              <TableCell align="center">
+                <DeleteAlbumButton
+                  idAlbum={row.id}
+                />
               </TableCell>
             </TableRow>
           ))}

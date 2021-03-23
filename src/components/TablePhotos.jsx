@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import PhotoAlbum from './PhotoAlbum';
 
 const useStyles = makeStyles({
   tableConteiner: {
@@ -41,11 +42,12 @@ const TablePhotos = ({ rows }) => {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell align="center">
-                <div className={classes.photoAlbum}>
-                  <img className={classes.photoAlbumImg} src={row.thumbnailUrl} alt={row.title} />
-                </div>
+                <PhotoAlbum
+                  img={row.thumbnailUrl}
+                  titel={row.titel}
+                />
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="left">
                 {row.title}
               </TableCell>
             </TableRow>
