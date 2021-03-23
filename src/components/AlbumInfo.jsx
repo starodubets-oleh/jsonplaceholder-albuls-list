@@ -15,8 +15,6 @@ const AlbumInfo = () => {
   const photosList = useSelector(photos)
   const isLoading = useSelector(isLoadingPhotos)
 
-  console.log(photosList);
-
   useEffect(() => {
     dispatch(setAlbumsPhotoList(id))
   }, [id, dispatch]);

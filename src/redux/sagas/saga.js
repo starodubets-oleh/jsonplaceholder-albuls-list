@@ -9,7 +9,11 @@ import {
         SET_ALBUMS_PHOTOS_LIST,
         SET_ALBUMS_PHOTOS_LIST_IS_LOADING,
         putAlbumsPhotoList,
-        putAlbumsPhotoListIsLoading
+        putAlbumsPhotoListIsLoading,
+        SET_EDIT_ALBUM,
+        putEditAlbum,
+        SET_DELETE_ALBUM,
+        putDeleteAlbum
 } from '../actions/action'
 
 
@@ -70,13 +74,54 @@ function* workerAlbumsPhotoList({payload}) {
 function* watchAlbumsPhotoList(){
   yield takeLatest(SET_ALBUMS_PHOTOS_LIST, workerAlbumsPhotoList)
 }
+//--------------------------------------
 
+function fetcEditAlbum(payload) {
+  console.log(payload);
+  return axios.put(`http://jsonplaceholder.typicode.com/albums/${payload.idAlbum}`, {
+    title: payload.name,
+    id: payload.idAlbum
+  })
+  .then(res => res.data)
+}
+function* workerEditAlbum({payload}) {
+  try {
+      const data = yield call(fetcEditAlbum, payload)
+      yield put(putEditAlbum(data))
+      alert('Is edited' + JSON.stringify(data))
+  } catch (error) {
+      yield alert(JSON.stringify(error))
+  }
+}
+function* watchEditAlbum(){
+  yield takeLatest(SET_EDIT_ALBUM, workerEditAlbum)
+}
+//--------------------------------
+
+function fetcDeleteAlbum(payload) {
+  return axios.delete(`http://jsonplaceholder.typicode.com/albums/${payload}`)
+  .then(res => res.data)
+}
+function* workerDeleteAlbum({payload}) {
+  try {
+      const data = yield call(fetcDeleteAlbum, payload)
+      yield put(putDeleteAlbum(data))
+      yield alert('Is Deleted')
+  } catch (error) {
+      yield alert(JSON.stringify(error))
+  }
+}
+function* watchDeleteAlbum(){
+  yield takeLatest(SET_DELETE_ALBUM, workerDeleteAlbum)
+}
 
 export default function* rootSaga() {
   yield all([
     watchAlbumsIsLoading(),
     watchAlbums(),
     watchAlbumsPhotoListIsLoading(),
-    watchAlbumsPhotoList()
+    watchAlbumsPhotoList(),
+    watchEditAlbum(),
+    watchDeleteAlbum()
   ])
 }

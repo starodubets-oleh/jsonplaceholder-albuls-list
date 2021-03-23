@@ -25,8 +25,6 @@ const useStyles = makeStyles({
 const TableAlbums = ({ rows }) => {
   const classes = useStyles();
 
-  console.log(rows);
-
   return (
     <TableContainer className={classes.tableConteiner} size='small' elevation={10} component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">

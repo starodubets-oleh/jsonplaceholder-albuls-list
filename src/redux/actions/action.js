@@ -6,6 +6,10 @@ export const SET_ALBUMS_PHOTOS_LIST = 'SET_ALBUMS_PHOTOS_LIST'
 export const PUT_ALBUMS_PHOTOS_LIST = 'PUT_ALBUMS_PHOTOS_LIST'
 export const SET_ALBUMS_PHOTOS_LIST_IS_LOADING = 'SET_ALBUMS_PHOTOS_LIST_IS_LOADING'
 export const PUT_ALBUMS_PHOTOS_LIST_IS_LOADING = 'PUT_ALBUMS_PHOTOS_LIST_IS_LOADING'
+export const SET_EDIT_ALBUM = 'SET_EDIT_ALBUM'
+export const PUT_EDIT_ALBUM = 'PUT_EDIT_ALBUM'
+export const SET_DELETE_ALBUM = 'SET_DELETE_ALBUM'
+export const PUT_DELETE_ALBUM = 'PUT_DELETE_ALBUM'
 
 export const setAlbums = (state) => {
   return {
@@ -57,5 +61,32 @@ export const putAlbumsPhotoListIsLoading = (isLoading) => {
   return{
       type: PUT_ALBUMS_PHOTOS_LIST_IS_LOADING,
       payload: isLoading
+  }
+}
+export const setEditAlbum = (state) => {
+  return {
+      type: SET_EDIT_ALBUM,
+      payload: state
+  }
+}
+
+export const putEditAlbum = (data) => {
+  return{
+      type: PUT_EDIT_ALBUM,
+      payload: data
+  }
+}
+
+export const setDeleteAlbum = (state) => {
+  return {
+      type: SET_DELETE_ALBUM,
+      payload: state
+  }
+}
+
+export const putDeleteAlbum = (data) => {
+  return{
+      type: PUT_DELETE_ALBUM,
+      payload: data
   }
 }
