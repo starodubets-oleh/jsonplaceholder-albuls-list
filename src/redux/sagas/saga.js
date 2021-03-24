@@ -13,7 +13,9 @@ import {
         SET_EDIT_ALBUM,
         putEditAlbum,
         SET_DELETE_ALBUM,
-        putDeleteAlbum
+        putDeleteAlbum,
+        SET_ADD_ALBUM,
+        putAddAlbum
 } from '../actions/action'
 
 
@@ -106,13 +108,31 @@ function* workerDeleteAlbum({payload}) {
   try {
       const data = yield call(fetcDeleteAlbum, payload)
       yield put(putDeleteAlbum(data))
-      yield alert('Is Deleted')
+      alert('Is Deleted')
   } catch (error) {
       yield alert(JSON.stringify(error))
   }
 }
 function* watchDeleteAlbum(){
   yield takeLatest(SET_DELETE_ALBUM, workerDeleteAlbum)
+}
+//---------------------------------
+
+function fetcAddAlbum(payload) {
+  return axios.post(`http://jsonplaceholder.typicode.com/albums`, payload)
+  .then(res => res.data)
+}
+function* workerAddAlbum({payload}) {
+  try {
+      const data = yield call(fetcAddAlbum, payload)
+      yield put(putAddAlbum(data))
+      alert('Is added' + JSON.stringify(data))
+  } catch (error) {
+      yield alert(JSON.stringify(error))
+  }
+}
+function* watchAddAlbum(){
+  yield takeLatest(SET_ADD_ALBUM, workerAddAlbum)
 }
 
 export default function* rootSaga() {
@@ -122,6 +142,7 @@ export default function* rootSaga() {
     watchAlbumsPhotoListIsLoading(),
     watchAlbumsPhotoList(),
     watchEditAlbum(),
-    watchDeleteAlbum()
+    watchDeleteAlbum(),
+    watchAddAlbum()
   ])
 }

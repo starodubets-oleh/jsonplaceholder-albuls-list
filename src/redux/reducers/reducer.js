@@ -1,4 +1,5 @@
 import {
+  PUT_ADD_ALBUM,
   PUT_ALBUMS,
   PUT_ALBUMS_IS_LOADING,
   PUT_ALBUMS_PHOTOS_LIST,
@@ -12,8 +13,9 @@ const initialState = {
   albumsIsLoading: false,
   photosList: [],
   photosListIsLoading: false,
-  ansverDelete: '',
-  ansverEdit: ''
+  ansverDelete: {},
+  ansverEdit: {},
+  addNewAlbums: {}
 }
 
 export const data = (state = initialState, {type, payload}) => {
@@ -47,6 +49,11 @@ export const data = (state = initialState, {type, payload}) => {
           return{
               ...state,
               ansverEdit: payload
+          }
+      case PUT_ADD_ALBUM:
+          return{
+              ...state,
+              addNewAlbums: payload
           }
       default:
           return state

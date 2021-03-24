@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch } from 'react-redux'
@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditAlbum = ({ idAlbum }) => {
-
-  console.log(idAlbum);
   const classes = useStyles();
 
   const dispatch = useDispatch()

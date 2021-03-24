@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
 
-import EditAlbum from './EditAlbum'
+import AddNewAlbum from './AddNewAlbum'
 import ModalAlbum from './ModalAlbum';
 
-const EditAlbumButton = ({ idAlbum }) => {
+const AddNewAlbumButton = () => {
   const [openEdit, setOpenEdit] = useState(false)
 
   const openModal = () => setOpenEdit(true)
@@ -17,19 +16,18 @@ const EditAlbumButton = ({ idAlbum }) => {
       <Button
         color='primary'
         onClick={openModal}
+        variant='contained'
       >
-        <EditIcon />
+        ADD NEW ALBUM
       </Button>
       <ModalAlbum
         isOpen={openEdit}
         close={closeModal}
       >
-        <EditAlbum
-          idAlbum={idAlbum}
-        />
+        <AddNewAlbum />
       </ModalAlbum>
     </>
   );
 }
 
-export default EditAlbumButton
+export default AddNewAlbumButton

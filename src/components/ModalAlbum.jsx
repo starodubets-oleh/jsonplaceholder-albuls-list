@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import EditAlbum from './EditAlbum';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -19,17 +18,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ModalEditAlbum = ({ idAlbum, isOpen }) => {
+const ModalAlbum = ({ isOpen, close, children }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    setOpen(isOpen)
-  }, [isOpen]);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClose = () => close()
 
   return (
     <div>
@@ -37,7 +29,7 @@ const ModalEditAlbum = ({ idAlbum, isOpen }) => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
+        open={isOpen}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -45,11 +37,9 @@ const ModalEditAlbum = ({ idAlbum, isOpen }) => {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={isOpen}>
           <div className={classes.paper}>
-            <EditAlbum
-              idAlbum={idAlbum}
-            />
+            {children}
           </div>
         </Fade>
       </Modal>
@@ -57,4 +47,4 @@ const ModalEditAlbum = ({ idAlbum, isOpen }) => {
   );
 }
 
-export default ModalEditAlbum
+export default ModalAlbum

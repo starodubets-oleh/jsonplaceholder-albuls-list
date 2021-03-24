@@ -15,7 +15,8 @@ import EditAlbumButton from './EditAlbumButton'
 const useStyles = makeStyles({
   tableConteiner: {
     width: 'fit-content',
-    margin: "0 auto"
+    margin: "0 auto",
+    marginTop: '2rem'
   },
   table: {
     width: 'auto',

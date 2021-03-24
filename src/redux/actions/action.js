@@ -10,6 +10,8 @@ export const SET_EDIT_ALBUM = 'SET_EDIT_ALBUM'
 export const PUT_EDIT_ALBUM = 'PUT_EDIT_ALBUM'
 export const SET_DELETE_ALBUM = 'SET_DELETE_ALBUM'
 export const PUT_DELETE_ALBUM = 'PUT_DELETE_ALBUM'
+export const SET_ADD_ALBUM = 'SET_ADD_ALBUM'
+export const PUT_ADD_ALBUM = 'PUT_ADD_ALBUM'
 
 export const setAlbums = (state) => {
   return {
@@ -87,6 +89,19 @@ export const setDeleteAlbum = (state) => {
 export const putDeleteAlbum = (data) => {
   return{
       type: PUT_DELETE_ALBUM,
+      payload: data
+  }
+}
+export const setAddAlbum = (state) => {
+  return {
+      type: SET_ADD_ALBUM,
+      payload: state
+  }
+}
+
+export const putAddAlbum = (data) => {
+  return{
+      type: PUT_ADD_ALBUM,
       payload: data
   }
 }
