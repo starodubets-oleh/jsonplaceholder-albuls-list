@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { useDispatch } from 'react-redux'
@@ -9,7 +9,7 @@ const DeleteAlbumButton = ({ idAlbum }) => {
 
   const dispatch = useDispatch()
 
-  const deleteRow = () => dispatch(setDeleteAlbum())
+  const deleteRow = useCallback(() => dispatch(setDeleteAlbum(idAlbum)), [dispatch, idAlbum])
 
   return (
     <Button

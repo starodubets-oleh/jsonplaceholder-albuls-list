@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core';
 
 import { setAddAlbum } from '../redux/actions/action'
-import { isLoadingAlbums } from '../redux/selectors/selector';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,21 +39,21 @@ const EditAlbum = () => {
     setAlbimId(text)
   }, [])
 
-  const addAlbim = (event) => {
+  const addAlbim = useCallback((event) => {
     event.preventDefault()
     dispatch(setAddAlbum({
       title: name,
       id: albimId,
       userId
     }))
-  }
+  }, [albimId, dispatch, name, userId])
   return (
     <>
       <h2>Editi Album Name</h2>
       <form onSubmit={addAlbim} className={classes.root} noValidate autoComplete="off">
-        <TextField value={name} onChange={changeNmae} id="standard-basic" label="Enter new name" />
-        <TextField value={userId} onChange={changeUserId} id="standard-basic" label="Enter user id" type='number' />
-        <TextField value={albimId} onChange={changeAlbumId} id="standard-basic" label="Enter album id" type='number' />
+        <TextField value={name} onChange={changeNmae} label="Enter new name" />
+        <TextField value={userId} onChange={changeUserId} label="Enter user id" type='number' />
+        <TextField value={albimId} onChange={changeAlbumId} label="Enter album id" type='number' />
         <Button type='submit' color='primary' >
           ADD
         </Button>

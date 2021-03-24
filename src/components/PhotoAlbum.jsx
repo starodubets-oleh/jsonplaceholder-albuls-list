@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Loading from './Loading'
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 const PhotoAlbum = ({ img, titel }) => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
-  const isload = () => setIsLoading(false)
+  const isload = useCallback(() => setIsLoading(false), [])
   return (
     <div className={classes.photoAlbum}>
       {isLoading ? <Loading /> : null}

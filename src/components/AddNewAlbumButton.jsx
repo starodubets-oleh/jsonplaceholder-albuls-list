@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Button from '@material-ui/core/Button';
 
 import AddNewAlbum from './AddNewAlbum'
@@ -7,9 +7,9 @@ import ModalAlbum from './ModalAlbum';
 const AddNewAlbumButton = () => {
   const [openEdit, setOpenEdit] = useState(false)
 
-  const openModal = () => setOpenEdit(true)
+  const openModal = useCallback(() => setOpenEdit(true), [])
 
-  const closeModal = () => setOpenEdit(false)
+  const closeModal = useCallback(() => setOpenEdit(false), [])
 
   return (
     <>

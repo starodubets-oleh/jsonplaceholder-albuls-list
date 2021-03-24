@@ -24,20 +24,17 @@ const EditAlbum = ({ idAlbum }) => {
 
   const [name, setName] = useState('');
 
-  const changeNmae = useCallback((event) => {
-    const text = event.target.value
-    setName(text)
-  }, [])
+  const handleChangeName = useCallback(({ target: { value } }) => setName(value), [])
 
-  const editAlbim = async (event) => {
+  const editAlbim = useCallback((event) => {
     event.preventDefault()
     dispatch(setEditAlbum({ idAlbum, name }))
-  }
+  }, [dispatch, idAlbum, name])
   return (
     <>
       <h2>Editi Album Name</h2>
       <form onSubmit={editAlbim} className={classes.root} noValidate autoComplete="off">
-        <TextField value={name} onChange={changeNmae} id="standard-basic" label="Enter new name" />
+        <TextField value={name} onChange={handleChangeName} label="Enter new name" />
         <Button type='submit' color='primary' >
           SAVE
         </Button>
